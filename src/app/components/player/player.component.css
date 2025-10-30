@@ -1,0 +1,264 @@
+:host {
+    display: block; 
+    background: #000000;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(139, 0, 0, 0.3);
+    border: 1px solid #333333;
+}
+
+.player-header {
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333333;
+}
+
+.player-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.icon-btn:hover {
+    background: #333333;
+}
+
+.tabs {
+    display: flex;
+    background: #1a1a1a;
+    padding: 0 32px;
+}
+
+.tab {
+    padding: 16px 0;
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #CCCCCC;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    color: #FF6B6B;
+    border-bottom: 2px solid #FF6B6B;
+}
+
+.tab:hover {
+    color: #FFFFFF;
+}
+
+.player-content {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.album-art {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.album-art img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.song-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.song-info {
+    text-align: left;
+}
+
+.song-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+}
+
+.song-artist {
+    font-size: 18px;
+    color: #CCCCCC;
+}
+
+.progress-area {
+    width: 100%;
+}
+
+.progress-bar {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #333333;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #FF6B6B;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    border: 2px solid #FFFFFF;
+}
+
+.progress-bar::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #FF6B6B;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    border: 2px solid #FFFFFF;
+}
+
+.time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #CCCCCC;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #333333;
+}
+
+.control-btn:hover {
+    background: #555555;
+    transform: scale(1.05);
+}
+
+.control-btn i {
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.play-pause {
+    width: 70px;
+    height: 70px;
+    background: #FF6B6B;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.play-pause:hover {
+    transform: scale(1.05);
+    background: #FF8E8E;
+}
+
+.secondary-controls {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+.secondary-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #FF6B6B;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+
+@media (max-width: 768px) {
+    .player-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 24px;
+    }
+    
+    .album-art {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .player-header {
+        padding: 16px 20px;
+    }
+    
+    .player-header h1 {
+        font-size: 20px;
+    }
+    
+    .tabs {
+        padding: 0 20px;
+    }
+    
+    .tab {
+        font-size: 12px;
+        padding: 12px 0;
+    }
+    
+    .song-title {
+        font-size: 24px;
+    }
+    
+    .controls {
+        gap: 16px;
+    }
+    
+    .control-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .play-pause {
+        width: 60px;
+        height: 60px;
+    }
+}
