@@ -1,71 +1,67 @@
-<div class="player-header">
-  <h1></h1> <div class="header-actions">
-    <button class="icon-btn">⋯</button>
-  </div>
-</div>
+<ng-container *ngIf="{
+  track: (currentTrack$ | async),
+  isPlaying: (isPlaying$ | async),
+  currentTime: (currentTime$ | async),
+  duration: (duration$ | async)
+} as state">
 
-<div class="tabs">
-  <div class="tab active">Me gusta</div>
-  <div class="tab">Videos</div>
-  <div class="tab">Privados</div>
-  <div class="tab">Album</div>
-</div>
-
-<div class="player-content">
-  
-  <div class="album-section">
-    <div class="album-art">
-      <img id="song-img" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Portada de canción">
+  <div class="player-header">
+    <h1>{{ state.track?.song_name || 'Reproductor Local' }}</h1>
+    <div class="header-actions">
+      <button class="icon-btn">⋯</button>
     </div>
   </div>
-  
-  <div class="song-info-section">
-    
-    <div class="song-info">
-      <h2 class="song-title" id="title">Iron Man</h2>
-      <p class="song-artist" id="artist">Is a new experience</p>
-    </div>
-    
-    <div class="progress-area">
-      <input type="range" id="progress" class="progress-bar" min="0" max="100" value="0">
-      <div class="time">
-        <span id="current-time">0:00</span>
-        <span id="total-time">0:00</span>
-      </div>
-    </div>
-    
-    <div class="controls">
-      <div class="control-btn shuffle">
-        <i>🔀</i>
-      </div>
-      <div class="control-btn" id="lastest">
-        <i>⏮</i>
-      </div>
-      <div class="control-btn play-pause" id="play">
-        <i>▶️</i>
-      </div>
-      <div class="control-btn" id="forward">
-        <i>⏭</i>
-      </div>
-      <div class="control-btn repeat">
-        <i>🔁</i>
-      </div>
-    </div>
-    
-    <div class="secondary-controls">
-      <div class="secondary-btn">
-        <i>💿</i>
-        <span>Álbum</span>
-      </div>
-      <div class="secondary-btn">
-        <i>🎵</i>
-        <span>Letra</span>
-      </div>
-      <div class="secondary-btn">
-        <i>⬇️</i>
-        <span>Descargar</span>
-      </div>
-    </div>
-
+  <div class="tabs">
+    <div class="tab active">Música Local</div>
   </div>
-</div>
+
+  <div class="player-content">
+    
+    <div class="album-section">
+      <div class="album-art">
+        <img [src]="state.track?.caratula || 'assets/img/default-cover.png'" alt="Portada">
+      </div>
+    </div>
+    
+    <div class="song-info-section">
+      
+      <div class="song-info">
+        <h2 class="song-title">{{ state.track?.song_name || 'Elige una canción' }}</h2>
+        <p class="song-artist">{{ state.track?.artist_name || '...' }}</p>
+      </div>
+      
+      <div class="progress-area">
+        <input 
+          type="range" 
+          class="progress-bar"
+          [value]="state.currentTime || 0"
+          [max]="state.duration || 100"
+          (input)="onSeek($event)"> 
+        <div class="time">
+          <span>{{ formatTime(state.currentTime) }}</span>
+          <span>{{ formatTime(state.duration) }}</span>
+        </div>
+      </div>
+      
+      <div class="controls">
+        <div class="control-btn shuffle"><i>🔀</i></div>
+        
+        <div class="control-btn" (click)="onPrevious()">
+          <i>⏮</i>
+        </div>
+        
+        <div class="control-btn play-pause" (click)="onPlayPause(state.isPlaying)">
+          <i *ngIf="!state.isPlaying">▶️</i>
+          <i *ngIf="state.isPlaying">⏸️</i>
+        </div>
+        
+        <div class="control-btn" (click)="onNext()">
+          <i>⏭</i>
+        </div>
+
+        <div class="control-btn repeat"><i>🔁</i></div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
