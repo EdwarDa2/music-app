@@ -1,42 +1,29 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
-
-
+import { CommonModule } from '@angular/common';
+import { Router, RouterOutlet } from '@angular/router'; 
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { PlayerComponent } from './components/player/player.component';
-import { PlaylistComponent } from './components/playlist/playlist.component';
 
-
-import { SpotifyService } from './services/spotify.service'; 
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule,
-    SidebarComponent,
-    PlayerComponent,
-    PlaylistComponent
+    RouterOutlet, 
+    SidebarComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent { 
-
-  public searchResults: any = null;
-
-
-  constructor(private spotifyService: SpotifyService) {}
-
+  
+  constructor(private router: Router) {}
 
   onSearch(query: string) {
     if (!query) {
-      this.searchResults = null; 
-      return; 
+      this.router.navigate(['/']); 
+    } else {
+      this.router.navigate(['/search'], { queryParams: { q: query } });
     }
-    this.spotifyService.search(query).subscribe(results => {
-      console.log(results); 
-      this.searchResults = results;
-    });
   }
 }

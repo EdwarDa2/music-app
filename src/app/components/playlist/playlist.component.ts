@@ -1,13 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-interface Song {
-  id: number;
-  caratula: string;
-  song_name: string;
-  artist_name: string;
-  duration: string;
-}
+import { MusicService, Track } from '../../services/music.service';
 
 @Component({
   selector: 'app-playlist',
@@ -16,35 +9,21 @@ interface Song {
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.css']
 })
-export class PlaylistComponent {
-  songs: Song[] = [
-    {
-      id: 1,
-      caratula: 'assets/img/song1.jpg',
-      song_name: 'Lost Stars',
-      artist_name: 'Adam Levine',
-      duration: '3:45'
-    },
-    {
-      id: 2,
-      caratula: 'assets/img/song2.jpg',
-      song_name: 'Blinding Lights',
-      artist_name: 'The Weeknd',
-      duration: '3:22'
-    },
-    {
-      id: 3,
-      caratula: 'assets/img/song3.jpg',
-      song_name: 'Shape of You',
-      artist_name: 'Ed Sheeran',
-      duration: '4:02'
-    }
-  ];
+export class PlaylistComponent implements OnInit {
 
-  currentIndex: number = 0;
+  public playlist: Track[] = [];
+  public currentTrack: Track | null = null;
 
-  selectSong(index: number): void {
-    this.currentIndex = index;
-    console.log('Canción seleccionada:', this.songs[index]);
+  constructor(private musicService: MusicService) {}
+
+  ngOnInit(): void {
+    this.playlist = this.musicService.getPlaylist();
+    
+    this.musicService.currentTrack$.subscribe(track => {
+      this.currentTrack = track;
+    });
+  }
+  playTrack(index: number): void {
+    this.musicService.play(index);
   }
 }

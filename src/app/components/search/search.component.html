@@ -1,0 +1,41 @@
+<ng-container *ngIf="searchResults">
+
+  <h3 *ngIf="searchResults.tracks?.items?.length">Canciones</h3>
+  <div class="results-grid">
+    <div class="result-card" 
+         *ngFor="let track of searchResults.tracks.items"
+         (click)="playPreview(track)">
+      
+      <img [src]="track.album?.images[0]?.url" alt="Carátula">
+      <div class="result-info">
+        <div class="result-title">{{ track.name }}</div>
+        <div class="result-subtitle">{{ track.artists[0]?.name }}</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 *ngIf="searchResults.artists?.items?.length">Artistas</h3>
+  <div class="results-grid">
+    <div class="result-card" *ngFor="let artist of searchResults.artists.items">
+      <img [src]="artist.images[0]?.url" alt="Artista" class="artist-img">
+      <div class="result-info">
+        <div class="result-title">{{ artist.name }}</div>
+        <div class="result-subtitle">Artista</div>
+      </div>
+    </div>
+  </div>
+
+  <h3 *ngIf="searchResults.albums?.items?.length">Álbumes</h3>
+  <div class="results-grid">
+    <div class="result-card" *ngFor="let album of searchResults.albums.items">
+      <img [src]="album.images[0]?.url" alt="Carátula">
+      <div class="result-info">
+        <div class="result-title">{{ album.name }}</div>
+        <div class="result-subtitle">{{ album.artists[0]?.name }}</div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="media" #audioPlayer src=""></audio>
+
+</ng-container>

@@ -1,0 +1,77 @@
+
+:host {
+  padding: 0 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  flex: 1; 
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+  margin-top: 16px; 
+}
+
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.result-card {
+  background: #1a1a1a;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.result-card:hover {
+  background: #333;
+}
+
+.result-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1; 
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.result-card img.artist-img {
+  border-radius: 50%; 
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.result-subtitle {
+  font-size: 14px;
+  color: #CCCCCC;
+}
+
+@media (max-width: 480px) {
+  :host {
+    padding: 0 16px 16px 16px;
+  }
+}

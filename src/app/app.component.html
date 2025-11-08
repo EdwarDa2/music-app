@@ -1,5 +1,4 @@
 <div class="container">
-
   <app-sidebar></app-sidebar>
 
   <div class="main-content">
@@ -14,58 +13,9 @@
           (keyup.enter)="onSearch(searchInput.value)"
           (keyup)="onSearch(searchInput.value)"> 
       </div>
-      <div class="user-menu">
-        <button class="upgrade-btn">Actualizar</button>
-        <div class="user-profile">
-          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=50&h=50&fit=crop&crop=face" alt="Usuario">
-          <span>Usuario</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="search-results-container" *ngIf="searchResults && searchInput.value">
-
-      <h3 *ngIf="searchResults.tracks?.items?.length">Canciones</h3>
-      <div class="results-grid">
-        <div class="result-card" *ngFor="let track of searchResults.tracks.items">
-          
-          <img [src]="track.album?.images[0]?.url" alt="Carátula">
-          <div class="result-info">
-            <div class="result-title">{{ track.name }}</div>
-            <div class="result-subtitle">{{ track.artists[0]?.name }}</div>
-          </div>
-          </div>
       </div>
 
-      <h3 *ngIf="searchResults.artists?.items?.length">Artistas</h3>
-      <div class="results-grid">
-        <div class="result-card" *ngFor="let artist of searchResults.artists.items">
-          
-          <img [src]="artist.images[0]?.url" alt="Artista" class="artist-img">
-          <div class="result-info">
-            <div class="result-title">{{ artist.name }}</div>
-            <div class="result-subtitle">Artista</div>
-          </div>
-          </div>
-      </div>
-
-      <h3 *ngIf="searchResults.albums?.items?.length">Álbumes</h3>
-      <div class="results-grid">
-        <div class="result-card" *ngFor="let album of searchResults.albums.items">
-          
-          <img [src]="album.images[0]?.url" alt="Carátula">
-          <div class="result-info">
-            <div class="result-title">{{ album.name }}</div>
-            <div class="result-subtitle">{{ album.artists[0]?.name }}</div>
-          </div>
-          </div>
-      </div>
-    </div>
-
-    <div class="content-area" *ngIf="!searchResults || !searchInput.value">
-      <app-player></app-player>
-      <app-playlist></app-playlist>
-    </div>
+    <router-outlet></router-outlet>
 
   </div>
 </div>

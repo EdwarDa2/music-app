@@ -1,17 +1,23 @@
 <div class="playlist-section">
-  <h3>Tu Playlist</h3>
+  <h3>Tu Playlist (Local)</h3>
   <div class="playlist">
-    <div class="playlist-item" 
-         *ngFor="let song of songs; let i = index" 
-         [class.active]="i === currentIndex"
-         (click)="selectSong(i)">
+    <div 
+      class="playlist-item" 
+      *ngFor="let track of playlist; let i = index"
+      
+      [class.active]="track === currentTrack"
+      
+      (click)="playTrack(i)">
+
       <div>{{ i + 1 }}</div>
-      <img [src]="song.caratula" alt="Song">
-      <div>
-        <div>{{ song.song_name }}</div>
-        <div>{{ song.artist_name }}</div>
+      
+      <img [src]="track.caratula" alt="Carátula">
+      
+      <div class="item-info">
+        <div>{{ track.song_name }}</div>
+        <div>{{ track.artist_name }}</div>
       </div>
-      <div>3:45</div>
-    </div>
+      
+      </div>
   </div>
 </div>

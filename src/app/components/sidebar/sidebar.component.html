@@ -1,7 +1,12 @@
 <div class="sidebar">
-  <div class="logo"><h2>🎵 MusicApp</h2></div>
+  <div class="logo">
+    <h2>🎵 MusicApp</h2>
+  </div>
   <nav class="nav-menu">
-    <div class="nav-item active">🏠 Inicio</div>
+    <a [routerLink]="['/']" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <span>🏠</span>
+      <span>Inicio</span>
+    </a>
     <div class="nav-item">📚 Tu Biblioteca</div>
     <div class="nav-section">
       <h3>PLAYLISTS</h3>
