@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  padding: 32px;
+  overflow-y: auto;
+  flex: 1;
+}
+.album-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.album-header img {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.album-info h2 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.album-info p {
+  font-size: 18px;
+  color: #ccc;
+  margin-top: 8px;
+}
+.album-info span {
+  font-size: 14px;
+  color: #aaa;
+  margin-top: 8px;
+  display: block;
+}
+.track-list {
+  display: flex;
+  flex-direction: column;
+}
+.track-item {
+  display: grid;
+  grid-template-columns: 30px 1fr 50px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.track-item:hover {
+  background: #333;
+}
+.track-number {
+  color: #aaa;
+  text-align: right;
+}
+.track-title {
+  font-weight: 600;
+}
+.track-artist {
+  font-size: 12px;
+  color: #ccc;
+  font-weight: 400;
+}
+.track-duration {
+  font-size: 14px;
+  color: #aaa;
+}

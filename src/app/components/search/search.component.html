@@ -2,10 +2,8 @@
 
   <h3 *ngIf="searchResults.tracks?.items?.length">Canciones</h3>
   <div class="results-grid">
-    <div class="result-card" 
-         *ngFor="let track of searchResults.tracks.items"
-         (click)="playPreview(track)">
-      
+    <div class="result-card" *ngFor="let track of searchResults.tracks.items" (click)="playPreview(track)">
+
       <img [src]="track.album?.images[0]?.url" alt="Carátula">
       <div class="result-info">
         <div class="result-title">{{ track.name }}</div>
@@ -27,15 +25,18 @@
 
   <h3 *ngIf="searchResults.albums?.items?.length">Álbumes</h3>
   <div class="results-grid">
-    <div class="result-card" *ngFor="let album of searchResults.albums.items">
-      <img [src]="album.images[0]?.url" alt="Carátula">
-      <div class="result-info">
-        <div class="result-title">{{ album.name }}</div>
-        <div class="result-subtitle">{{ album.artists[0]?.name }}</div>
-      </div>
-    </div>
-  </div>
 
+    <a *ngFor="let album of searchResults.albums.items" [routerLink]="['/album', album.id]" class="result-card-link">
+      <div class="result-card">
+        <img [src]="album.images[0]?.url" alt="Carátula">
+        <div class="result-info">
+          <div class="result-title">{{ album.name }}</div>
+          <div class="result-subtitle">{{ album.artists[0]?.name }}</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
   <audio id="media" #audioPlayer src=""></audio>
 
 </ng-container>
